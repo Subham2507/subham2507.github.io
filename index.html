@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +7,16 @@
   <meta name="description" content="Subham Ghosh — PhD researcher at IIT Roorkee in Data Science & AI. IndiaAI PhD Fellow. Building LLM-powered systems for scientific discovery.">
   <meta name="keywords" content="Subham Ghosh, IIT Roorkee, PhD, Data Science, AI, Machine Learning, NLP, LLM, Materials Science">
   <meta name="author" content="Subham Ghosh">
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+
+  <!-- Instant theme restore — runs before CSS renders, eliminates flash -->
+  <script>!function(){var t=localStorage.getItem('sg-theme');document.documentElement.setAttribute('data-theme',t||'light')}();</script>
 
   <link rel="icon" href="assets/img/fav_pic.jpg">
   <link rel="apple-touch-icon" href="assets/img/fav_pic.jpg">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -28,9 +35,9 @@
       --accent:       #8b5cf6;
       --accent2:      #06b6d4;
       --accent-glow:  rgba(139, 92, 246, 0.25);
-      --text:         #e2e8f0;
-      --text-muted:   #94a3b8;
-      --text-dim:     #4b5563;
+      --text:         #f1f5f9;
+      --text-muted:   #c4cfdc;
+      --text-dim:     #7a8a9a;
       --gradient:     linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
       --grad-text:    linear-gradient(135deg, #a78bfa 0%, #38bdf8 100%);
       --shadow:       0 4px 24px rgba(0,0,0,0.3);
@@ -50,9 +57,9 @@
       --accent:       #7c3aed;
       --accent2:      #0284c7;
       --accent-glow:  rgba(124, 58, 237, 0.18);
-      --text:         #1e293b;
-      --text-muted:   #475569;
-      --text-dim:     #94a3b8;
+      --text:         #0f172a;
+      --text-muted:   #2d3f55;
+      --text-dim:     #5a7080;
       --gradient:     linear-gradient(135deg, #7c3aed 0%, #0284c7 100%);
       --grad-text:    linear-gradient(135deg, #7c3aed 0%, #0284c7 100%);
       --shadow:       0 4px 24px rgba(124, 58, 237, 0.08);
@@ -109,11 +116,9 @@
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      opacity: 0;
+      opacity: 1;
       transition: opacity 0.6s ease;
     }
-
-    [data-theme="light"] #bubbleCanvas { opacity: 1; }
 
     /* ── NAV ── */
     #navbar {
@@ -1139,7 +1144,7 @@
       </ul>
       <div class="nav-right">
         <button id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark theme">
-          <i class="fas fa-moon" id="themeIcon"></i>
+          <i class="fas fa-sun" id="themeIcon"></i>
         </button>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu">
           <i class="fas fa-bars" id="hamburgerIcon"></i>
@@ -1774,118 +1779,149 @@
       html.setAttribute('data-theme', theme);
       themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
       localStorage.setItem(STORAGE_KEY, theme);
-      if (theme === 'light') startBubbles(); else stopBubbles();
+      stopMath(); startMath(); /* clear canvas and rebuild with new theme colours */
     }
 
     document.getElementById('themeToggle').addEventListener('click', () => {
       applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     });
 
-    /* Restore saved preference */
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) applyTheme(saved);
-
-    /* ── BUBBLE ANIMATION ── */
+    /* ── MATH PATTERN · De Jong Strange Attractor — 4-fold symmetry, dual theme ── */
     const canvas = document.getElementById('bubbleCanvas');
     const ctx    = canvas.getContext('2d');
-    let bubbles  = [];
-    let animId   = null;
+    let mathId   = null;
     let running  = false;
 
-    const BUBBLE_COLORS = [
-      'rgba(167,139,250,VAL)',   /* purple */
-      'rgba(129,202,237,VAL)',   /* sky */
-      'rgba(196,181,253,VAL)',   /* lavender */
-      'rgba(167,243,208,VAL)',   /* mint */
-      'rgba(253,186,116,VAL)',   /* peach */
-      'rgba(147,197,253,VAL)',   /* light blue */
-    ];
+    let mx = 0.1, my = 0.1, ma, mb, mc, md, mTimer = 0;
+
+    const BATCH = 1500;
+    const CYCLE = 400;
+    /* 4-fold mirror: each iteration adds 4 points × 2 coords = 8 entries per bucket.
+       With i%2 split: max per buffer = BATCH/2 × 8 = BATCH×4 entries.            */
+    const PTS1  = new Float32Array(BATCH * 4);
+    const PTS2  = new Float32Array(BATCH * 4);
+    const PTS3  = new Float32Array(BATCH * 4); /* dark-mode third colour (magenta) */
+
+    function newAttractor() {
+      const v = () => (1.2 + Math.random() * 1.6) * (Math.random() < 0.5 ? 1 : -1);
+      ma = v(); mb = v(); mc = v(); md = v();
+      mx = 0.1; my = 0.1;
+      for (let i = 0; i < 1000; i++) { /* burn transient, land on the attractor */
+        const nx = Math.sin(ma * my) - Math.cos(mb * mx);
+        const ny = Math.sin(mc * mx) - Math.cos(md * my);
+        mx = nx; my = ny;
+      }
+      mTimer = 0;
+    }
 
     function resize() {
       canvas.width  = window.innerWidth;
       canvas.height = window.innerHeight;
     }
 
-    function mkBubble() {
-      const r = 20 + Math.random() * 60;
-      return {
-        x:    Math.random() * canvas.width,
-        y:    canvas.height + r + Math.random() * 200,
-        r,
-        speedY: 0.3 + Math.random() * 0.5,
-        speedX: (Math.random() - 0.5) * 0.3,
-        wobble: Math.random() * Math.PI * 2,
-        wobbleSpeed: 0.005 + Math.random() * 0.01,
-        color: BUBBLE_COLORS[Math.floor(Math.random() * BUBBLE_COLORS.length)],
-        opacity: 0.12 + Math.random() * 0.18,
-      };
-    }
+    function drawFrame() {
+      const w = canvas.width, h = canvas.height;
+      const cx = w / 2, cy = h / 2;
+      const scaleX = w * 0.40;   /* spread across full width */
+      const scaleY = h * 0.36;   /* proportional height      */
+      const dark   = html.getAttribute('data-theme') === 'dark';
 
-    function initBubbles() {
-      resize();
-      bubbles = [];
-      for (let i = 0; i < 22; i++) {
-        const b = mkBubble();
-        b.y = Math.random() * canvas.height;
-        bubbles.push(b);
-      }
-    }
+      /* per-frame fade — keep density low so text stays readable */
+      ctx.save();
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = 'rgba(0,0,0,0.018)';
+      ctx.fillRect(0, 0, w, h);
+      ctx.restore();
 
-    function drawBubbles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      bubbles.forEach(b => {
-        b.wobble += b.wobbleSpeed;
-        b.x += Math.sin(b.wobble) * 0.4 + b.speedX;
-        b.y -= b.speedY;
+      /* iterate attractor; reflect each point across both axes (4-fold symmetry) */
+      let c1 = 0, c2 = 0, c3 = 0;
+      const mod = 2;
 
-        if (b.y + b.r < -10) {
-          Object.assign(b, mkBubble());
+      for (let i = 0; i < BATCH; i++) {
+        const nx = Math.sin(ma * my) - Math.cos(mb * mx);
+        const ny = Math.sin(mc * mx) - Math.cos(md * my);
+        mx = nx; my = ny;
+
+        const dx = mx * scaleX, dy = my * scaleY;
+        if (Math.abs(dx) >= cx - 2 || Math.abs(dy) >= cy - 2) continue;
+
+        /* four symmetric reflections around canvas centre */
+        const x1 = cx + dx, y1 = cy + dy;
+        const x2 = cx - dx, y2 = cy + dy;
+        const x3 = cx + dx, y3 = cy - dy;
+        const x4 = cx - dx, y4 = cy - dy;
+
+        const p = i % mod;
+        if (p === 0) {
+          PTS1[c1]=x1; PTS1[c1+1]=y1; PTS1[c1+2]=x2; PTS1[c1+3]=y2;
+          PTS1[c1+4]=x3; PTS1[c1+5]=y3; PTS1[c1+6]=x4; PTS1[c1+7]=y4; c1+=8;
+        } else if (p === 1) {
+          PTS2[c2]=x1; PTS2[c2+1]=y1; PTS2[c2+2]=x2; PTS2[c2+3]=y2;
+          PTS2[c2+4]=x3; PTS2[c2+5]=y3; PTS2[c2+6]=x4; PTS2[c2+7]=y4; c2+=8;
+        } else {
+          PTS3[c3]=x1; PTS3[c3+1]=y1; PTS3[c3+2]=x2; PTS3[c3+3]=y2;
+          PTS3[c3+4]=x3; PTS3[c3+5]=y3; PTS3[c3+6]=x4; PTS3[c3+7]=y4; c3+=8;
         }
+      }
 
-        const col = b.color.replace('VAL', b.opacity);
-        const colBorder = b.color.replace('VAL', b.opacity * 0.6);
-
+      if (dark) {
+        /* ── dark: subtle, won't overpower text ── */
+        ctx.fillStyle = 'rgba(139,92,246,0.32)';
         ctx.beginPath();
-        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-
-        /* subtle gradient fill */
-        const grad = ctx.createRadialGradient(
-          b.x - b.r * 0.3, b.y - b.r * 0.3, b.r * 0.1,
-          b.x, b.y, b.r
-        );
-        grad.addColorStop(0, b.color.replace('VAL', b.opacity * 1.4));
-        grad.addColorStop(1, b.color.replace('VAL', b.opacity * 0.4));
-        ctx.fillStyle = grad;
+        for (let i = 0; i < c1; i += 2) ctx.rect(PTS1[i], PTS1[i+1], 1.5, 1.5);
         ctx.fill();
 
-        ctx.strokeStyle = colBorder;
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-      });
-      animId = requestAnimationFrame(drawBubbles);
+        ctx.fillStyle = 'rgba(6,182,212,0.26)';
+        ctx.beginPath();
+        for (let i = 0; i < c2; i += 2) ctx.rect(PTS2[i], PTS2[i+1], 1.5, 1.5);
+        ctx.fill();
+
+      } else {
+        /* ── light: soft, won't overpower text ── */
+        ctx.fillStyle = 'rgba(124,58,237,0.18)';
+        ctx.beginPath();
+        for (let i = 0; i < c1; i += 2) ctx.rect(PTS1[i], PTS1[i+1], 1.5, 1.5);
+        ctx.fill();
+
+        ctx.fillStyle = 'rgba(2,132,199,0.14)';
+        ctx.beginPath();
+        for (let i = 0; i < c2; i += 2) ctx.rect(PTS2[i], PTS2[i+1], 1.5, 1.5);
+        ctx.fill();
+      }
+
+      if (++mTimer >= CYCLE) newAttractor(); /* smooth crossfade: old fades, new builds */
+      mathId = requestAnimationFrame(drawFrame);
     }
 
-    function startBubbles() {
+    function startMath() {
       if (running) return;
       running = true;
-      initBubbles();
-      drawBubbles();
+      resize();
+      newAttractor();
+      drawFrame();
     }
 
-    function stopBubbles() {
+    function stopMath() {
       if (!running) return;
       running = false;
-      cancelAnimationFrame(animId);
+      cancelAnimationFrame(mathId);
+      mathId = null;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
     window.addEventListener('resize', () => {
       resize();
-      if (running) initBubbles();
+      if (running) ctx.clearRect(0, 0, canvas.width, canvas.height);
     });
 
-    /* If already light on load */
-    if (html.getAttribute('data-theme') === 'light') startBubbles();
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { if (mathId) cancelAnimationFrame(mathId); }
+      else if (running)    { mathId = requestAnimationFrame(drawFrame); }
+    });
+
+    /* Initialize icon, then start pattern — always active in both themes */
+    themeIcon.className = html.getAttribute('data-theme') === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+    startMath();
 
     /* ── NAV SCROLL ── */
     const navbar = document.getElementById('navbar');
