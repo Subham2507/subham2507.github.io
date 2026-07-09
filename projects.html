@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Subham Ghosh</title>
+  <meta name="description" content="Selected projects by Subham Ghosh spanning NLP, Computer Vision, MLOps, and Computational Physics.">
+  <meta name="keywords" content="Subham Ghosh, IIT Roorkee, PhD, Data Science, AI, Machine Learning, NLP, LLM, Materials Science">
+  <meta name="author" content="Subham Ghosh">
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+
+  <!-- Instant theme restore — runs before CSS renders, eliminates flash -->
+  <script>!function(){var t=localStorage.getItem('sg-theme');document.documentElement.setAttribute('data-theme',t||'light')}();</script>
+
+  <link rel="icon" href="assets/img/fav_pic.jpg">
+  <link rel="apple-touch-icon" href="assets/img/fav_pic.jpg">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+  <!-- Bubble canvas (light theme only) -->
+  <canvas id="bubbleCanvas"></canvas>
+
+  <!-- ── NAV ── -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">SG.</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="publications.html">Papers</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="assets/CV_SUBHAM.pdf" download class="nav-cta">Resume</a></li>
+      </ul>
+      <div class="nav-right">
+        <button id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark theme">
+          <i class="fas fa-sun" id="themeIcon"></i>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <i class="fas fa-bars" id="hamburgerIcon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── PAGE HERO ── -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> / Projects</div>
+      <h1>Selected <span class="highlight">Work</span></h1>
+      <p>Research and engineering spanning NLP, Computer Vision, and Computational Physics.</p>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects" class="alt-bg">
+    <div class="container">
+      <div class="projects-grid">
+        <div class="project-card reveal reveal-delay-1">
+          <span class="proj-eyebrow">NLP · Computer Vision</span>
+          <h3 class="proj-title">BLIP Fine-tuning on Materials Dataset</h3>
+          <div class="proj-meta">
+            <span class="org">IIT Roorkee</span>
+            <span>Jan 2025 – May 2025</span>
+          </div>
+          <p class="proj-desc">
+            Collected and preprocessed a materials science dataset from research papers, applying OCR for text extraction. Used NLP techniques for caption refinement and fine-tuned a BLIP model to enhance image-captioning performance on scientific figures.
+          </p>
+          <div class="proj-footer">
+            <div class="tech-stack">
+              <span class="tech">PyTorch</span>
+              <span class="tech">BLIP</span>
+              <span class="tech">OCR</span>
+              <span class="tech">NLP</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card reveal reveal-delay-2">
+          <span class="proj-eyebrow">Data Engineering · LLM</span>
+          <h3 class="proj-title">Research Data Pipeline Development</h3>
+          <div class="proj-meta">
+            <span class="org">IIT Roorkee</span>
+            <span>Nov 2024 – Jan 2025</span>
+          </div>
+          <p class="proj-desc">
+            Designed and implemented a pipeline to collect DOIs via journal APIs and segment research data into text, images, and tables. Created a vector database for efficient semantic search and retrieval of segmented scientific content.
+          </p>
+          <div class="proj-footer">
+            <div class="tech-stack">
+              <span class="tech">Python</span>
+              <span class="tech">Vector DB</span>
+              <span class="tech">Journal APIs</span>
+              <span class="tech">ETL</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card reveal reveal-delay-3">
+          <span class="proj-eyebrow">Computational Physics</span>
+          <h3 class="proj-title">Many-Body Localization — MSc Thesis</h3>
+          <div class="proj-meta">
+            <span class="org">IIT Mandi</span>
+            <span>Aug 2022 – May 2023</span>
+          </div>
+          <p class="proj-desc">
+            Studied the effects of random interactions using the Fibonacci quasiperiodic sequence on Many-Body Localization. Used exact diagonalization to compute level spacing distributions and eigenfunction statistics to identify MBL phase transitions.
+          </p>
+          <div class="proj-footer">
+            <div class="tech-stack">
+              <span class="tech">Python</span>
+              <span class="tech">NumPy</span>
+              <span class="tech">SciPy</span>
+              <span class="tech">Matplotlib</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card reveal reveal-delay-1">
+          <span class="proj-eyebrow">Machine Learning</span>
+          <h3 class="proj-title">ML on Materials Science Dataset</h3>
+          <div class="proj-meta">
+            <span class="org">IIT Mandi</span>
+            <span>May 2023 – Jun 2023</span>
+          </div>
+          <p class="proj-desc">
+            Comprehensive evaluation of multiple ML models on a Materials Science dataset. Achieved a <strong>20% reduction in false positive rates</strong> through systematic model selection and hyperparameter optimization.
+          </p>
+          <div class="proj-footer">
+            <a href="https://github.com/Subham2507/Material_Science_Project" class="proj-link" target="_blank" rel="noopener">
+              GitHub <i class="fas fa-arrow-right"></i>
+            </a>
+            <div class="tech-stack">
+              <span class="tech">Scikit-learn</span>
+              <span class="tech">Pandas</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card reveal reveal-delay-2">
+          <span class="proj-eyebrow">MLOps · Web</span>
+          <h3 class="proj-title">ML Model Deployment with Web App</h3>
+          <div class="proj-meta">
+            <span class="org">Personal Project</span>
+          </div>
+          <p class="proj-desc">
+            End-to-end deployment of a machine learning model with a fully functional web application — from data preprocessing and model training to containerized serving and a user-friendly frontend.
+          </p>
+          <div class="proj-footer">
+            <a href="https://github.com/Subham2507/mlproject" class="proj-link" target="_blank" rel="noopener">
+              GitHub <i class="fas fa-arrow-right"></i>
+            </a>
+            <div class="tech-stack">
+              <span class="tech">Python</span>
+              <span class="tech">Flask</span>
+              <span class="tech">MLOps</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card reveal reveal-delay-3">
+          <span class="proj-eyebrow">Machine Learning</span>
+          <h3 class="proj-title">Fraud Detection System</h3>
+          <div class="proj-meta">
+            <span class="org">Personal Project</span>
+          </div>
+          <p class="proj-desc">
+            Built a fraud detection pipeline using classification algorithms on transaction data. Focused on handling severely imbalanced datasets and optimizing the precision-recall tradeoff for financial decision-making.
+          </p>
+          <div class="proj-footer">
+            <a href="https://github.com/Subham2507/Fraud_detection" class="proj-link" target="_blank" rel="noopener">
+              GitHub <i class="fas fa-arrow-right"></i>
+            </a>
+            <div class="tech-stack">
+              <span class="tech">Scikit-learn</span>
+              <span class="tech">Pandas</span>
+              <span class="tech">XGBoost</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Subham Ghosh</div>
+      <div class="footer-tagline">Building the future of AI-powered scientific discovery.</div>
+      <div class="footer-socials">
+        <a href="https://github.com/Subham2507" target="_blank" rel="noopener" class="social-icon" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/subham2507/" target="_blank" rel="noopener" class="social-icon" title="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="mailto:subham_g1@mfs.iitr.ac.in" class="social-icon" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Subham Ghosh &nbsp;·&nbsp; All rights reserved</div>
+    </div>
+  </footer>
+
+  <button id="toTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
