@@ -68,16 +68,58 @@
           <i class="fas fa-download"></i> Download CV
         </a>
       </div>
-      <div class="hero-socials">
-        <a href="https://github.com/Subham2507" target="_blank" rel="noopener" class="social-icon" title="GitHub">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/subham2507/" target="_blank" rel="noopener" class="social-icon" title="LinkedIn">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="mailto:subham_g1@mfs.iitr.ac.in" class="social-icon" title="Email">
-          <i class="fas fa-envelope"></i>
-        </a>
+      <!-- ── LINK CONSOLE · circuit / terminal ── -->
+      <div class="link-console">
+        <div class="lc-tabs" role="tablist">
+          <button class="lc-tab active" id="tabCircuit" role="tab" aria-selected="true">⌁ circuit</button>
+          <button class="lc-tab" id="tabTerminal" role="tab" aria-selected="false">&gt;_ terminal</button>
+        </div>
+
+        <div class="lc-circuit" id="lcCircuit">
+          <svg id="lcTraces" aria-hidden="true"></svg>
+          <div class="lc-chip">
+            <span class="lc-chip-dot"></span>
+            <div class="lc-chip-name">SG</div>
+            <div class="lc-chip-sub">LINK-CTRL</div>
+            <div class="lc-chip-rev">REV 2.0 · 2026</div>
+          </div>
+          <ul class="lc-list">
+            <li><a class="lc-row" href="assets/CV_SUBHAM.pdf" download>
+              <span class="lc-box"></span><span class="lc-name">CV</span><span class="lc-detail">curriculum vitae · pdf</span></a></li>
+            <li><a class="lc-row" href="https://github.com/Subham2507" target="_blank" rel="noopener">
+              <span class="lc-box"></span><span class="lc-name">GITHUB</span><span class="lc-detail">github.com/Subham2507</span></a></li>
+            <li><a class="lc-row" href="https://www.linkedin.com/in/subham2507/" target="_blank" rel="noopener">
+              <span class="lc-box"></span><span class="lc-name">LINKEDIN</span><span class="lc-detail">linkedin.com/in/subham2507</span></a></li>
+            <li><a class="lc-row" href="publications.html">
+              <span class="lc-box"></span><span class="lc-name">PAPERS</span><span class="lc-detail">publications &amp; preprints</span></a></li>
+            <li><a class="lc-row" href="mailto:subham_g1@mfs.iitr.ac.in">
+              <span class="lc-box"></span><span class="lc-name">EMAIL</span><span class="lc-detail">subham_g1@mfs.iitr.ac.in</span></a></li>
+          </ul>
+        </div>
+
+        <div class="lc-terminal" id="lcTerminal" hidden>
+          <div class="term-bar"><span class="tb-r"></span><span class="tb-y"></span><span class="tb-g"></span><em>subham@iitr: ~/links</em></div>
+          <div class="term-body">
+            <div class="term-line"><span class="term-prompt">subham@iitr:~$</span> whoami</div>
+            <div class="term-out">PhD researcher · IIT Roorkee · IndiaAI Fellow</div>
+            <div class="term-line"><span class="term-prompt">subham@iitr:~$</span> ls ./links --open</div>
+            <a class="term-link" href="assets/CV_SUBHAM.pdf" download>→ cv.pdf      curriculum vitae</a>
+            <a class="term-link" href="https://github.com/Subham2507" target="_blank" rel="noopener">→ github      github.com/Subham2507</a>
+            <a class="term-link" href="https://www.linkedin.com/in/subham2507/" target="_blank" rel="noopener">→ linkedin    linkedin.com/in/subham2507</a>
+            <a class="term-link" href="publications.html">→ papers      ./publications.html</a>
+            <a class="term-link" href="mailto:subham_g1@mfs.iitr.ac.in">→ email       subham_g1@mfs.iitr.ac.in</a>
+            <div class="term-line"><span class="term-prompt">subham@iitr:~$</span> <span class="term-cursor"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── GULLY CRICKET · two doodle players, endless test match ── -->
+      <div class="hero-cricket">
+        <div class="game-head">
+          <span class="game-title">// gully cricket · endless test match</span>
+          <span class="game-score">score <b id="scoreEl">0/0</b> &nbsp;·&nbsp; overs <b id="oversEl">0.0</b></span>
+        </div>
+        <canvas id="cricketScene" aria-label="Animated doodle of two little men playing cricket: a bowler runs up and bowls, the batsman hits fours and sixes"></canvas>
       </div>
     </div>
     <a href="#journey" class="scroll-indicator">
@@ -92,7 +134,7 @@
       <div class="reveal">
         <div class="section-eyebrow">// My Story</div>
         <h2 class="section-heading">The Journey So Far</h2>
-        <div class="section-bar"></div>
+        <div class="section-bar"><span class="sec-mascot" data-mascot="bat"></span></div>
       </div>
       <div class="timeline reveal reveal-delay-1">
 
@@ -364,7 +406,7 @@
       <div class="reveal">
         <div class="section-eyebrow">// Explore</div>
         <h2 class="section-heading">More About Me</h2>
-        <div class="section-bar"></div>
+        <div class="section-bar"><span class="sec-mascot" data-mascot="bowl"></span></div>
         <p class="section-sub">A quick map of the site — background, research, work, and recognition.</p>
       </div>
       <div class="explore-grid">
@@ -426,6 +468,14 @@
     <i class="fas fa-chevron-up"></i>
   </button>
 
+  <!-- bottom-left: minimize / restore the cricket match -->
+  <button id="cricketToggle" aria-label="Show or hide the cricket match" title="Hide the cricket match">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" fill="#d64533" stroke="#8f2417" stroke-width="1.6"/>
+      <path d="M9 4.5 Q6.5 12 9 19.5 M15 4.5 Q17.5 12 15 19.5" stroke="#fff7ed" stroke-width="1.1" fill="none" stroke-dasharray="2 2"/>
+    </svg>
+  </button>
+
   <script src="assets/js/site.js"></script>
   <script>
     /* ── TYPING ANIMATION (home page only) ── */
@@ -444,6 +494,675 @@
       if (!deleting && ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
       if (deleting && ci === 0)            { deleting = false; pi = (pi + 1) % phrases.length; }
       setTimeout(type, deleting ? 55 : 85);
+    })();
+
+    /* ── GULLY CRICKET · a proper little test match ──
+       Real-ish rules: dot balls, run singles/twos (batsman actually runs between
+       the wickets), fours, sixes, bowled, caught (and dropped!) — six balls an
+       over, ten wickets an innings, milestones celebrated. */
+    (function () {
+      const cv = document.getElementById('cricketScene');
+      if (!cv) return;
+      const g = cv.getContext('2d');
+      const W = 720, H = 180;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      cv.width = W * dpr; cv.height = H * dpr;
+      g.scale(dpr, dpr);
+
+      const scoreEl = document.getElementById('scoreEl');
+      const oversEl = document.getElementById('oversEl');
+      let runs = 0, wkts = 0, balls = 0;
+      try {
+        const s = JSON.parse(localStorage.getItem('sg-cricket') || '{}');
+        runs = s.r || 0; wkts = Math.min(s.w || 0, 9); balls = s.b || 0;
+      } catch (e) {}
+      const save = () => localStorage.setItem('sg-cricket', JSON.stringify({ r: runs, w: wkts, b: balls }));
+      function scoreboard() {
+        scoreEl.textContent = runs + '/' + wkts;
+        oversEl.textContent = Math.floor(balls / 6) + '.' + (balls % 6);
+      }
+      scoreboard();
+
+      /* ── geometry ── */
+      const GY = 158;                          /* ground line            */
+      const BSTART = 30, CREASE = 116;         /* bowler run-up          */
+      const BSTUMPX = 100;                     /* bowler-end stumps      */
+      const BATX = 610, STUMPX = 636;          /* batsman + his stumps   */
+      const KEEPX = 668;                       /* wicketkeeper           */
+      const FLDHOME = 235;                     /* deep fielder           */
+      const TURNX = CREASE + 34;               /* batsman's turn point   */
+      const GRAV = 0.13;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ── actors & state ── */
+      let state = 'runup', t = 0, frame = 0, deadT = 0;
+      let bx = BSTART;                         /* bowler x               */
+      let armA = Math.PI / 2;                  /* bowling-arm angle      */
+      let swingT = -1, swung = false;
+      let willMiss = Math.random() < 0.10;
+      let bailsOn = true;
+      const ball = { x: 0, y: 0, vx: 0, vy: 0, held: true, rolling: false, live: false };
+      const bat  = { x: BATX, mode: 'stance', dir: -1, runsLeft: 0, legPhase: 0, celebT: 0 };
+      const fld  = { x: FLDHOME, mode: 'idle', hasBall: false, throwT: 0, legPhase: 0 };
+      const keep = { mode: 'crouch' };
+      let markers = [];                        /* this over: • 1 4 6 W   */
+      let pendingCeleb = null;
+      let ballReturning = false, ballWithBowler = false, ballCaught = false;
+      let pops = [], bails = [];
+      const tufts = [];                        /* grass, fixed at init   */
+      for (let i = 0; i < 16; i++) tufts.push({ x: 14 + Math.random() * (W - 28), s: 2.5 + Math.random() * 2.5 });
+      let cloudX = Math.random() * W;
+
+      const dark   = () => document.documentElement.getAttribute('data-theme') === 'dark';
+      const ink    = () => dark() ? '#e2e8f0' : '#1e293b';
+      const face   = () => dark() ? '#0b0b1a' : '#f8fafc';
+      const dim    = () => dark() ? 'rgba(196,207,220,0.35)' : 'rgba(90,112,128,0.4)';
+      const accent = () => dark() ? '#a78bfa' : '#7c3aed';
+
+      /* ── rules ── */
+      function pop(text, x, y, col, big) { pops.push({ text, x, y, life: 1, col, big }); }
+
+      function legalBall(marker) {
+        if (markers.length >= 6) markers = [];
+        markers.push(marker);
+        balls++;
+        scoreboard(); save();
+      }
+
+      function addRuns(n) {
+        const before = runs;
+        runs += n;
+        scoreboard(); save();
+        for (const m of [50, 100, 150, 200, 250, 300]) {
+          if (before < m && runs >= m) {
+            pendingCeleb = m === 100 ? 'CENTURY!' : m === 50 ? 'FIFTY!' : m + ' UP!';
+          }
+        }
+      }
+
+      function wicket(how) {
+        wkts++;
+        scoreboard(); save();
+        bat.mode = 'sad';
+        keep.mode = 'up';
+        pop(how, BATX - 60, GY - 78, '#d64533', true);
+        if (wkts >= 10) pop('ALL OUT — ' + runs, W / 2, 42, '#d64533', true);
+      }
+
+      function endOfInnings() {
+        runs = 0; wkts = 0; balls = 0; markers = [];
+        scoreboard(); save();
+        pop('new innings!', W / 2, 60, accent(), false);
+      }
+
+      /* ── shared doodle pieces ── */
+      function head(x, y, dir, sad, r) {
+        r = r || 8.5;
+        g.fillStyle = face();
+        g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill(); g.stroke();
+        g.beginPath(); g.arc(x, y - 1.5, r, Math.PI * 1.02, Math.PI * 1.98); g.stroke();
+        g.beginPath(); g.moveTo(x + dir * (r - 2.5), y - r * 0.7); g.lineTo(x + dir * (r + 3.5), y - r * 0.55); g.stroke();
+        g.fillStyle = ink();
+        g.beginPath();
+        g.arc(x + dir * 2, y - 0.5, 1.1, 0, Math.PI * 2);
+        g.arc(x + dir * 5, y - 0.5, 1.1, 0, Math.PI * 2);
+        g.fill();
+        g.beginPath();
+        if (sad) g.arc(x + dir * 3, y + 4.6, 2.4, Math.PI * 1.15, Math.PI * 1.85);
+        else     g.arc(x + dir * 3, y + 2.4, 2.6, Math.PI * 0.15, Math.PI * 0.85);
+        g.stroke();
+      }
+
+      function pen() {
+        g.strokeStyle = ink(); g.lineWidth = 2.4;
+        g.lineCap = 'round'; g.lineJoin = 'round';
+      }
+
+      /* ── the bowler ── */
+      function bowlerHand() {
+        return { x: bx + Math.cos(armA) * 13, y: GY - 34 + Math.sin(armA) * 13 };
+      }
+
+      function drawBowler() {
+        const hip = GY - 22, sh = GY - 35;
+        pen();
+        const moving = state === 'runup' || state === 'walkback';
+        const k = moving ? Math.sin(t * (state === 'runup' ? 0.45 : 0.25)) : 0;
+        g.beginPath();
+        g.moveTo(bx, hip); g.lineTo(bx - 7 - 5 * k, GY);
+        g.moveTo(bx, hip); g.lineTo(bx + 7 + 5 * k, GY);
+        g.moveTo(bx, hip); g.lineTo(bx, sh);
+        g.moveTo(bx, sh + 2); g.lineTo(bx - 9, sh + 10 + 2 * k);
+        const hnd = bowlerHand();
+        g.moveTo(bx, sh + 1); g.lineTo(hnd.x, hnd.y);
+        g.stroke();
+        head(bx, GY - 45, 1);
+      }
+
+      /* ── the batsman ── */
+      function drawBatter() {
+        const x = bat.x, hip = GY - 22, sh = GY - 35;
+        pen();
+        if (bat.mode === 'run' || bat.mode === 'return') {
+          const d = bat.dir, k = Math.sin(bat.legPhase);
+          g.beginPath();
+          g.moveTo(x, hip); g.lineTo(x - 8 - 6 * k, GY);
+          g.moveTo(x, hip); g.lineTo(x + 8 + 6 * k, GY);
+          g.moveTo(x, hip); g.lineTo(x + d * 4, sh);          /* leaning in   */
+          g.moveTo(x + d * 3, sh + 3); g.lineTo(x + d * 12, sh + 8 - 3 * k);
+          g.stroke();
+          g.strokeStyle = dark() ? '#d9a35f' : '#b07a3a';     /* bat trails   */
+          g.lineWidth = 5;
+          g.beginPath();
+          g.moveTo(x - d * 6, sh + 8);
+          g.lineTo(x - d * 22, sh + 16);
+          g.stroke();
+          pen();
+          head(x + d * 4, GY - 45, d);
+        } else if (bat.mode === 'celebrate') {
+          const jump = -Math.abs(Math.sin(frame * 0.22)) * 6;
+          g.beginPath();
+          g.moveTo(x, hip + jump); g.lineTo(x - 7, GY);
+          g.moveTo(x, hip + jump); g.lineTo(x + 7, GY);
+          g.moveTo(x, hip + jump); g.lineTo(x, sh + jump);
+          g.moveTo(x, sh + 3 + jump); g.lineTo(x - 10, sh - 9 + jump);   /* arm up */
+          g.moveTo(x, sh + 3 + jump); g.lineTo(x + 9, sh - 7 + jump);    /* arm w/ bat */
+          g.stroke();
+          g.strokeStyle = dark() ? '#d9a35f' : '#b07a3a';
+          g.lineWidth = 5;
+          g.beginPath();
+          g.moveTo(x + 9, sh - 7 + jump);
+          g.lineTo(x + 12, sh - 30 + jump);                              /* bat raised */
+          g.stroke();
+          pen();
+          head(x, GY - 45 + jump, -1);
+        } else {
+          const sad = bat.mode === 'sad';
+          const bob = sad ? 0 : Math.sin(frame * 0.06) * 0.8;
+          let phi = sad ? 1.62 : 1.95 + Math.sin(frame * 0.1) * 0.06;
+          if (swingT >= 0) phi = 1.95 + Math.min(1, swingT / 8) * 1.55;
+          const hx = x - 8, hy = sh + 8 + bob;
+          g.beginPath();
+          g.moveTo(x, hip); g.lineTo(x - 8, GY);
+          g.moveTo(x, hip); g.lineTo(x + 8, GY);
+          g.moveTo(x, hip); g.lineTo(x, sh + bob);
+          g.moveTo(x, sh + 3 + bob); g.lineTo(hx, hy);
+          g.moveTo(x, sh + 6 + bob); g.lineTo(hx, hy + 2);
+          g.stroke();
+          g.strokeStyle = dark() ? '#d9a35f' : '#b07a3a';
+          g.lineWidth = 6;
+          g.beginPath();
+          g.moveTo(hx, hy);
+          g.lineTo(hx + Math.cos(phi) * 25, hy + Math.sin(phi) * 25);
+          g.stroke();
+          pen();
+          head(x, GY - 45 + bob, -1, sad);
+        }
+      }
+
+      /* ── the deep fielder (smaller = further away) ── */
+      function drawFielder() {
+        const x = fld.x, hip = GY - 18, sh = GY - 28;
+        pen();
+        g.lineWidth = 2.1;
+        const k = fld.mode === 'chase' || fld.mode === 'track' ? Math.sin(fld.legPhase) : 0;
+        g.beginPath();
+        g.moveTo(x, hip); g.lineTo(x - 6 - 4 * k, GY);
+        g.moveTo(x, hip); g.lineTo(x + 6 + 4 * k, GY);
+        g.moveTo(x, hip); g.lineTo(x, sh);
+        if (fld.mode === 'up') {                                /* caught it!  */
+          g.moveTo(x, sh + 2); g.lineTo(x - 7, sh - 10);
+          g.moveTo(x, sh + 2); g.lineTo(x + 7, sh - 10);
+        } else if (fld.mode === 'throw') {
+          g.moveTo(x, sh + 2); g.lineTo(x - 9, sh - 6);
+          g.moveTo(x, sh + 2); g.lineTo(x + 7, sh + 8);
+        } else {
+          g.moveTo(x, sh + 2); g.lineTo(x - 7, sh + 9 + 2 * k);
+          g.moveTo(x, sh + 2); g.lineTo(x + 7, sh + 9 - 2 * k);
+        }
+        g.stroke();
+        head(x, GY - 36, ball.x < x ? -1 : 1, false, 7);
+        if (fld.hasBall) drawBall(x - 8, fld.mode === 'up' ? sh - 11 : sh - 5, 3.5);
+      }
+
+      /* ── the wicketkeeper, crouched behind the stumps ── */
+      function drawKeeper() {
+        const x = KEEPX;
+        pen();
+        g.lineWidth = 2.1;
+        if (keep.mode === 'up') {
+          const hip = GY - 18, sh = GY - 28;
+          g.beginPath();
+          g.moveTo(x, hip); g.lineTo(x - 6, GY);
+          g.moveTo(x, hip); g.lineTo(x + 6, GY);
+          g.moveTo(x, hip); g.lineTo(x, sh);
+          g.moveTo(x, sh + 2); g.lineTo(x - 7, sh - 9);
+          g.moveTo(x, sh + 2); g.lineTo(x + 7, sh - 9);
+          g.stroke();
+          head(x, GY - 36, -1, false, 7);
+        } else {
+          const hip = GY - 10, sh = GY - 18;
+          g.beginPath();
+          g.moveTo(x, hip); g.lineTo(x - 5, GY);
+          g.moveTo(x, hip); g.lineTo(x + 5, GY);
+          g.moveTo(x, hip); g.lineTo(x + 1, sh);
+          g.moveTo(x + 1, sh + 1); g.lineTo(x - 7, sh + 6);
+          g.moveTo(x + 1, sh + 1); g.lineTo(x - 5, sh + 8);
+          g.stroke();
+          g.fillStyle = ink();                                   /* gloves */
+          g.beginPath();
+          g.arc(x - 8, sh + 6, 1.8, 0, Math.PI * 2);
+          g.arc(x - 6, sh + 8.5, 1.8, 0, Math.PI * 2);
+          g.fill();
+          head(x + 1, GY - 25, -1, false, 6.5);
+        }
+      }
+
+      function drawStumps(x, on) {
+        g.strokeStyle = ink(); g.lineWidth = 2; g.lineCap = 'round';
+        g.beginPath();
+        for (let i = -1; i <= 1; i++) { g.moveTo(x + i * 5, GY); g.lineTo(x + i * 5 - 1, GY - 22); }
+        g.stroke();
+        if (on) { g.beginPath(); g.moveTo(x - 8, GY - 23.5); g.lineTo(x + 8, GY - 23.5); g.stroke(); }
+      }
+
+      function drawBall(x, y, r) {
+        g.fillStyle = '#d64533';
+        g.strokeStyle = '#8f2417';
+        g.lineWidth = 1.2;
+        g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill(); g.stroke();
+      }
+
+      /* ── scenery ── */
+      function drawScenery() {
+        /* sky: sun by day, moon & stars by night */
+        if (dark()) {
+          g.strokeStyle = 'rgba(226,232,240,0.55)'; g.lineWidth = 1.6;
+          g.beginPath(); g.arc(W - 64, 30, 10, Math.PI * 0.45, Math.PI * 1.6); g.stroke();
+          g.beginPath(); g.arc(W - 59, 28, 7.5, Math.PI * 0.5, Math.PI * 1.55); g.stroke();
+          [[W - 110, 20], [W - 88, 44], [W - 30, 38]].forEach((s, i) => {
+            g.globalAlpha = 0.35 + 0.35 * Math.abs(Math.sin(frame * 0.02 + i * 2));
+            g.fillStyle = '#e2e8f0';
+            g.beginPath(); g.arc(s[0], s[1], 1.3, 0, Math.PI * 2); g.fill();
+            g.globalAlpha = 1;
+          });
+        } else {
+          g.strokeStyle = 'rgba(217,145,52,0.65)'; g.lineWidth = 1.6;
+          g.beginPath(); g.arc(W - 64, 30, 9, 0, Math.PI * 2); g.stroke();
+          for (let i = 0; i < 8; i++) {
+            const a = i * Math.PI / 4 + frame * 0.002;
+            g.beginPath();
+            g.moveTo(W - 64 + Math.cos(a) * 13, 30 + Math.sin(a) * 13);
+            g.lineTo(W - 64 + Math.cos(a) * 17, 30 + Math.sin(a) * 17);
+            g.stroke();
+          }
+        }
+        /* drifting cloud */
+        g.strokeStyle = dim(); g.lineWidth = 1.4;
+        g.beginPath();
+        g.arc(cloudX, 34, 7, Math.PI * 0.9, Math.PI * 2.05);
+        g.arc(cloudX + 11, 30, 9, Math.PI * 0.95, Math.PI * 2.1);
+        g.arc(cloudX + 24, 34, 7, Math.PI * 1.2, Math.PI * 0.15);
+        g.stroke();
+
+        /* ground line + pitch */
+        g.strokeStyle = dim(); g.lineWidth = 1.5;
+        g.beginPath(); g.moveTo(6, GY + 1.5); g.lineTo(W - 6, GY + 1.5); g.stroke();
+        g.fillStyle = dark() ? 'rgba(217,163,95,0.10)' : 'rgba(176,122,58,0.12)';
+        g.fillRect(BSTUMPX, GY - 1, STUMPX - BSTUMPX, 4);
+        g.strokeStyle = dim(); g.lineWidth = 1;
+        g.beginPath();                                          /* creases */
+        g.moveTo(CREASE + 8, GY + 1); g.lineTo(CREASE + 8, GY - 7);
+        g.moveTo(STUMPX - 26, GY + 1); g.lineTo(STUMPX - 26, GY - 7);
+        g.stroke();
+        /* grass tufts */
+        g.strokeStyle = dim(); g.lineWidth = 1.1;
+        g.beginPath();
+        for (const tf of tufts) {
+          g.moveTo(tf.x, GY); g.lineTo(tf.x - 2, GY - tf.s);
+          g.moveTo(tf.x, GY); g.lineTo(tf.x + 0.5, GY - tf.s - 1);
+          g.moveTo(tf.x, GY); g.lineTo(tf.x + 2.5, GY - tf.s);
+        }
+        g.stroke();
+        /* boundary flags */
+        [[12, 1], [W - 12, -1]].forEach(([fx, d]) => {
+          g.strokeStyle = dim(); g.lineWidth = 1.4;
+          g.beginPath(); g.moveTo(fx, GY); g.lineTo(fx, GY - 18); g.stroke();
+          g.fillStyle = dark() ? 'rgba(167,139,250,0.5)' : 'rgba(124,58,237,0.4)';
+          g.beginPath();
+          g.moveTo(fx, GY - 18); g.lineTo(fx + d * 9, GY - 15); g.lineTo(fx, GY - 12);
+          g.fill();
+        });
+
+        /* this-over tracker */
+        g.fillStyle = dim();
+        g.font = '10px "Space Mono", monospace';
+        g.textAlign = 'left';
+        g.fillText('over:  ' + (markers.length ? markers.join(' ') : '—'), 16, 16);
+      }
+
+      /* ── physics ── */
+      function ballPhys() {
+        ball.x += ball.vx; ball.y += ball.vy; ball.vy += GRAV;
+        if (ball.y > GY - 4) {
+          ball.y = GY - 4;
+          if (Math.abs(ball.vy) > 0.9 && !ball.rolling) ball.vy *= -0.55;
+          else { ball.vy = 0; ball.rolling = true; }
+        }
+        if (ball.rolling) ball.vx *= 0.97;
+      }
+
+      /* ── outcome of a well-timed shot ── */
+      function playShot() {
+        const r = Math.random();
+        ball.rolling = false;
+        if (r < 0.24) {                                     /* dot — dead bat */
+          ball.vx = -(0.9 + Math.random() * 0.5); ball.vy = -0.8;
+          legalBall('•');
+          state = 'dead'; deadT = 70;
+        } else if (r < 0.46) {                              /* quick single   */
+          ball.vx = -(2.3 + Math.random() * 0.5); ball.vy = -1.3;
+          legalBall('1');
+          startRun(1);
+        } else if (r < 0.62) {                              /* running two    */
+          ball.vx = -(3.1 + Math.random() * 0.6); ball.vy = -1.5;
+          legalBall('2');
+          startRun(2);
+        } else if (r < 0.80) {                              /* FOUR           */
+          ball.vx = -(10 + Math.random() * 2.5); ball.vy = -1.1;
+          legalBall('4'); addRuns(4);
+          pop('FOUR!', BATX - 60, GY - 70, accent(), true);
+          state = 'boundary';
+        } else if (r < 0.92) {                              /* SIX            */
+          ball.vx = -(3.6 + Math.random() * 2); ball.vy = -(6.4 + Math.random() * 1.2);
+          legalBall('6'); addRuns(6);
+          pop('SIX!', BATX - 60, GY - 70, accent(), true);
+          state = 'boundary';
+        } else {                                            /* in the air…    */
+          ball.vx = -(5.4 + Math.random() * 0.8); ball.vy = -(4 + Math.random() * 0.6);
+          state = 'catching';
+          fld.mode = 'track';
+        }
+      }
+
+      function startRun(n) {
+        bat.mode = 'run'; bat.dir = -1; bat.runsLeft = n;
+        fld.mode = 'chase';
+        state = 'fieldrun';
+      }
+
+      /* ── per-frame update ── */
+      function step() {
+        frame++;
+        cloudX += 0.12; if (cloudX > W + 40) cloudX = -40;
+
+        if (state === 'runup') {
+          t++;
+          bx = BSTART + (CREASE - BSTART) * (t / 55);
+          if (t >= 55) { state = 'bowl'; t = 0; }
+        } else if (state === 'bowl') {
+          t++;
+          armA = Math.PI / 2 - (t / 15) * (Math.PI - 0.35);
+          if (t >= 15) {
+            state = 'flight'; t = 0;
+            const hnd = bowlerHand();
+            ball.held = false; ball.live = true; ball.rolling = false;
+            ballReturning = ballWithBowler = ballCaught = false;
+            ball.x = hnd.x; ball.y = hnd.y; ball.vx = 8; ball.vy = -0.8;
+          }
+        } else if (state === 'flight') {
+          ballPhys();
+          const trigger = willMiss ? BATX - 170 : BATX - 62;
+          if (!swung && ball.x > trigger) { swingT = 0; swung = true; }
+          if (swingT >= 2 && swingT <= 7 &&
+              Math.abs(ball.x - (BATX - 24)) < 17 && Math.abs(ball.y - (GY - 24)) < 22) {
+            playShot();
+          } else if (ball.x > STUMPX - 5) {                 /* clean bowled  */
+            legalBall('W');
+            wicket('BOWLED!');
+            bailsOn = false;
+            bails = [
+              { x: STUMPX - 4, y: GY - 24, vx: -1.3, vy: -2.8 },
+              { x: STUMPX + 4, y: GY - 24, vx: 1.5, vy: -2.3 },
+            ];
+            ball.live = false;
+            state = 'dead'; deadT = 95;
+          }
+        } else if (state === 'boundary') {
+          ballPhys();
+          if (ball.x < -25 || ball.y < -25) { ball.live = false; state = 'dead'; deadT = 45; }
+        } else if (state === 'catching') {
+          ballPhys();
+          /* fielder settles under it */
+          if (Math.abs(ball.x - fld.x) > 3) { fld.x += Math.sign(ball.x - fld.x) * 3; fld.legPhase += 0.55; }
+          if (ball.vy > 0 && ball.y > GY - 40 && Math.abs(ball.x - fld.x) < 12) {
+            ball.live = false; ballCaught = true;
+            fld.mode = 'up'; fld.hasBall = true;
+            legalBall('W');
+            wicket('CAUGHT!');
+            state = 'dead'; deadT = 95;
+          } else if (ball.rolling || ball.y > GY - 6) {     /* put it down!  */
+            pop('dropped!', fld.x, GY - 52, '#d64533', false);
+            legalBall('2');
+            startRun(2);
+          }
+        } else if (state === 'fieldrun') {
+          if (!ballWithBowler) {
+            if (!fld.hasBall && !ballReturning) {
+              ballPhys();
+              if (Math.abs(ball.x - fld.x) > 3) { fld.x += Math.sign(ball.x - fld.x) * 2.9; fld.legPhase += 0.55; }
+              if (ball.rolling && Math.abs(ball.x - fld.x) < 8) {
+                fld.hasBall = true; ball.live = false;
+                fld.mode = 'throw'; fld.throwT = 0;
+              }
+            } else if (fld.hasBall) {
+              fld.throwT++;
+              if (fld.throwT > 16) {                        /* throw it in   */
+                fld.hasBall = false; ballReturning = true;
+                ball.live = true; ball.rolling = false;
+                ball.x = fld.x - 8; ball.y = GY - 33;
+                ball.vx = (CREASE - fld.x) / 42; ball.vy = -3;
+              }
+            } else if (ballReturning) {
+              ballPhys();
+              if (Math.abs(ball.x - CREASE) < 16 || ball.rolling) {
+                ball.live = false; ballWithBowler = true;
+                fld.mode = 'idle';
+              }
+            }
+          }
+          if (ballWithBowler && bat.mode === 'stance') { state = 'dead'; deadT = 30; }
+        } else if (state === 'dead') {
+          if (ball.live) ballPhys();
+          if (pendingCeleb && (bat.mode === 'stance' || bat.mode === 'sad')) {
+            bat.mode = 'celebrate'; bat.celebT = 80;
+            pop(pendingCeleb, BATX - 60, GY - 80, accent(), true);
+            pendingCeleb = null;
+            deadT = Math.max(deadT, 85);
+          }
+          deadT--;
+          if (deadT <= 0) {
+            if (wkts >= 10) endOfInnings();
+            state = 'walkback'; t = 0;
+          }
+        } else if (state === 'walkback') {
+          t++;
+          bx = CREASE - (CREASE - BSTART) * (t / 65);
+          armA = Math.PI / 2;
+          if (t >= 65) {
+            state = 'runup'; t = 0;
+            swingT = -1; swung = false;
+            willMiss = Math.random() < 0.10;
+            ball.held = true; ball.live = false;
+            bailsOn = true; bails = [];
+            bat.mode = 'stance'; bat.x = BATX;
+            keep.mode = 'crouch';
+            fld.mode = 'idle'; fld.hasBall = false;
+          }
+        }
+
+        /* batsman shuttling between the wickets */
+        if (bat.mode === 'run') {
+          bat.legPhase += 0.55;
+          bat.x += bat.dir * 5.2;
+          if (bat.dir === -1 && bat.x <= TURNX) {
+            addRuns(1); bat.runsLeft--;
+            if (bat.runsLeft > 0) bat.dir = 1;
+            else { bat.mode = 'return'; bat.dir = 1; }
+          } else if (bat.dir === 1 && bat.x >= BATX) {
+            bat.x = BATX;
+            addRuns(1); bat.runsLeft--;
+            if (bat.runsLeft > 0) bat.dir = -1;
+            else bat.mode = 'stance';
+          }
+        } else if (bat.mode === 'return') {
+          bat.legPhase += 0.4;
+          bat.x += 3.4;
+          if (bat.x >= BATX) { bat.x = BATX; bat.mode = 'stance'; }
+        } else if (bat.mode === 'celebrate') {
+          bat.celebT--;
+          if (bat.celebT <= 0) bat.mode = 'stance';
+        }
+
+        /* fielder drifts home when idle */
+        if (fld.mode === 'idle' && Math.abs(fld.x - FLDHOME) > 2) {
+          fld.x += Math.sign(FLDHOME - fld.x) * 1.4;
+          fld.legPhase += 0.3;
+        }
+
+        if (swingT >= 0) { swingT++; if (swingT > 24) swingT = -1; }
+        for (const b of bails) { b.x += b.vx; b.y += b.vy; b.vy += 0.15; }
+        for (let i = pops.length - 1; i >= 0; i--) {
+          const p = pops[i]; p.y -= 0.45; p.life -= 0.016;
+          if (p.life <= 0) pops.splice(i, 1);
+        }
+      }
+
+      /* ── render ── */
+      function draw() {
+        g.clearRect(0, 0, W, H);
+        drawScenery();
+        drawStumps(BSTUMPX, true);
+        drawStumps(STUMPX, bailsOn);
+        drawKeeper();
+        drawFielder();
+        drawBowler();
+        drawBatter();
+        if (ball.held) { const hnd = bowlerHand(); drawBall(hnd.x + 2, hnd.y + 2, 4); }
+        else if (ball.live) drawBall(ball.x, ball.y, 4.5);
+        else if (state === 'dead' && !ballCaught && !ballWithBowler && !bailsOn) drawBall(STUMPX - 10, GY - 5, 4.5);
+        g.strokeStyle = ink(); g.lineWidth = 2;
+        for (const b of bails) { g.beginPath(); g.moveTo(b.x - 3, b.y); g.lineTo(b.x + 3, b.y); g.stroke(); }
+        for (const p of pops) {
+          g.globalAlpha = Math.max(0, p.life);
+          g.fillStyle = p.col;
+          g.font = (p.big ? '700 18px' : '700 13px') + ' "Space Grotesk", sans-serif';
+          g.textAlign = 'center';
+          g.fillText(p.text, p.x, p.y);
+          g.globalAlpha = 1;
+        }
+      }
+
+      /* ── bottom-left toggle: minimize / restore the match ── */
+      const tog  = document.getElementById('cricketToggle');
+      const wrap = document.querySelector('.hero-cricket');
+      function setHidden(h) {
+        wrap.classList.toggle('collapsed', h);
+        tog.classList.toggle('off', h);
+        tog.title = h ? 'Show the cricket match' : 'Hide the cricket match';
+        localStorage.setItem('sg-cricket-hide', h ? '1' : '');
+      }
+      if (tog && wrap) {
+        tog.addEventListener('click', () => setHidden(!wrap.classList.contains('collapsed')));
+        setHidden(localStorage.getItem('sg-cricket-hide') === '1');
+      }
+
+      /* animate only while on screen */
+      let inView = true;
+      new IntersectionObserver((en) => { inView = en[0].isIntersecting; }).observe(cv);
+
+      if (reduced) { draw(); return; }
+      (function loop() {
+        if (inView) { step(); draw(); }
+        requestAnimationFrame(loop);
+      })();
+    })();
+
+    /* ── LINK CONSOLE · chip + circuit traces to each link ── */
+    (function () {
+      const panel = document.getElementById('lcCircuit');
+      const svg   = document.getElementById('lcTraces');
+      if (!panel || !svg) return;
+      const chip = panel.querySelector('.lc-chip');
+      const rows = Array.from(panel.querySelectorAll('.lc-row'));
+      const term = document.getElementById('lcTerminal');
+      const tabC = document.getElementById('tabCircuit');
+      const tabT = document.getElementById('tabTerminal');
+
+      function drawTraces() {
+        if (panel.hidden) return;
+        if (!chip.offsetParent || getComputedStyle(chip).display === 'none') { svg.innerHTML = ''; return; }
+        const pr = panel.getBoundingClientRect();
+        if (!pr.width) return;
+        svg.setAttribute('viewBox', '0 0 ' + pr.width + ' ' + pr.height);
+        const cr = chip.getBoundingClientRect();
+        const x0 = cr.right - pr.left + 8;                 /* clear the pins */
+        const cy = cr.top - pr.top + cr.height / 2;
+        const n  = rows.length;
+        let out = '';
+        rows.forEach((row, i) => {
+          const box = row.querySelector('.lc-box').getBoundingClientRect();
+          const ty  = box.top - pr.top + box.height / 2;
+          const tx  = box.left - pr.left - 3;
+          const py  = cy + (i - (n - 1) / 2) * 9;          /* pin fan-out    */
+          const mx  = x0 + 16 + i * 13;                    /* staggered bend */
+          out += '<path class="lc-trace" data-i="' + i + '" d="M ' + x0 + ' ' + py +
+                 ' L ' + mx + ' ' + py + ' L ' + mx + ' ' + ty + ' L ' + tx + ' ' + ty + '"/>';
+          out += '<circle class="lc-dot" data-i="' + i + '" cx="' + mx + '" cy="' + ((py + ty) / 2) + '" r="3"/>';
+        });
+        svg.innerHTML = out;
+      }
+
+      let hovering = false;
+      function setHot(i) {
+        svg.querySelectorAll('[data-i]').forEach(el => el.classList.toggle('hot', +el.dataset.i === i));
+        rows.forEach((r, j) => r.classList.toggle('hot', j === i));
+      }
+      rows.forEach((row, i) => {
+        row.addEventListener('mouseenter', () => { hovering = true;  setHot(i); });
+        row.addEventListener('mouseleave', () => { hovering = false; setHot(-1); });
+        row.addEventListener('focus',      () => setHot(i));
+        row.addEventListener('blur',       () => setHot(-1));
+      });
+
+      /* idle pulse — a signal wanders through the board */
+      let pulseI = 0;
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setInterval(() => {
+          if (hovering || panel.hidden || !panel.offsetParent) return;
+          setHot(pulseI % rows.length);
+          pulseI++;
+        }, 2600);
+      }
+
+      /* tabs */
+      function setTab(showTerm) {
+        tabC.classList.toggle('active', !showTerm);
+        tabT.classList.toggle('active', showTerm);
+        tabC.setAttribute('aria-selected', String(!showTerm));
+        tabT.setAttribute('aria-selected', String(showTerm));
+        panel.hidden = showTerm;
+        term.hidden  = !showTerm;
+        if (!showTerm) requestAnimationFrame(drawTraces);
+      }
+      tabC.addEventListener('click', () => setTab(false));
+      tabT.addEventListener('click', () => setTab(true));
+
+      window.addEventListener('resize', drawTraces);
+      window.addEventListener('load', drawTraces);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawTraces);
+      drawTraces();
+      setTimeout(drawTraces, 400);
     })();
   </script>
 </body>
